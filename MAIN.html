@@ -1,0 +1,104 @@
+<html>
+<head>
+    <title>Calculator</title>
+<style>
+    button.c22{height: 1cm ; width: 1.5cm; background-color: brown ;align-content: center ;}
+    button.c1{ background: 3cm ; background-color: brown ;align-content: center ; height: 1cm ; width: 1cm}
+    input.c2{    background: 12cm ; background-color: chocolate ; alignment: left ; border: black 2px ; font-family: "Bookshelf Symbol 7" ; width: 4cm        }
+    p.dotted {border-style: dotted;}
+    p.dashed {border-style: dashed;}
+    p.solid {border-style: solid;}
+    p.double {border-style: double;}
+    p.groove {border-style: groove;}
+    p.ridge {border-style: ridge;}
+    p.inset {border-style: inset;}
+    p.outset {border-style: outset;}
+    p.none {border-style: none;}
+    p.hidden {border-style: hidden;}
+    p.mix {border-style: dotted dashed solid double;}
+    </style>
+
+
+    <script >
+        class view {
+            constructor() { const CONTROL = null;}
+
+
+            getText() { return document.getElementById('input').value;}
+
+            addCONTROLLER(Control) {this.CONTROL = Control;}
+            SHOWINGE(STRR) {document.getElementById('input').value = STRR;}
+            showingOut (STRR) {document.getElementById('output').value = STRR;}
+
+        }
+
+        class controller {
+            constructor(){this.model1 =null;this.view1 = null ;}
+            AddModel(modell){this.model1=modell ;}
+            AddView(vieww){ this.view1=vieww; }
+            calculate() {
+                this.model1.setSTR(this.view1.getText()); this.view1.SHOWINGE(this.model1.getEquation()); this.view1.showingOut(this.model1.Eevaluate());
+            }
+            clear() {
+                this.model1.setSTR(""); this.view1.SHOWINGE(""); this.view1.showingOut("");
+            }
+            DON(){
+                this.view1.showingOut("");
+                this.model1.setSTR(  this.view1.getText().slice(0,this.view1.getText().length-1)   );
+                //this.view1.showingOut(this.model1.Eevaluate());
+                this.view1.SHOWINGE(this.model1.getEquation());
+            }
+
+
+
+        }
+
+
+        class model {
+//set text
+//evaluate
+
+            getEquation(){return this.textt;}
+            constructor(){this.textt = "";}
+            setSTR( stext  ){this.textt=stext;}
+            Eevaluate(){return eval(this.textt); }
+            clearText(){this.textt = "";}
+        }
+       function Begin() {
+           //create model
+           //create view
+           //create control
+           //add model
+           //add view
+           //view add controller
+
+           M = new model();
+           V =new view();
+           C = new controller();
+
+           C.AddModel(M);
+           C.AddView(V);
+           V.addCONTROLLER(C);
+
+       }
+    </script>
+</head>
+
+
+
+<body style="border: brown 15px dashed">
+
+<h2>Calculator</h2>
+<script>Begin();</script>
+<p class="double" align="center" >
+<divstyle="alignment: center">
+    EQUATION: <input  id="input" type="text" ><br>
+    Result  : <input id="output" type="text" disabled ><br>
+    <input  type="button" onclick="C.calculate()" value="Calculate">
+    <input type="button" onclick="C.clear()" value="Clear">
+    <input type="button" onclick="C.DON()" value="Delete one char">
+<br>
+    </div>
+</p>
+</body>
+</html>
